@@ -1,13 +1,7 @@
-<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Astar Health Service logo">
-  <rect x="1" y="1" width="46" height="46" rx="13" fill="#146b73"/>
-  <rect x="1" y="1" width="46" height="46" rx="13" fill="url(#ag)" fill-opacity="0.5"/>
-  <path d="M24 9.5c1.2 4.9 4.6 8.3 9.5 9.5-4.9 1.2-8.3 4.6-9.5 9.5-1.2-4.9-4.6-8.3-9.5-9.5 4.9-1.2 8.3-4.6 9.5-9.5Z" fill="#f6c453"/>
-  <path d="M14.5 38.5 24 23l9.5 15.5h-5.2L24 31l-4.3 7.5h-5.2Z" fill="#ffffff"/>
-  <circle cx="24" cy="35.5" r="2.1" fill="#f2785c"/>
-  <defs>
-    <linearGradient id="ag" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#2a9da6"/>
-      <stop offset="1" stop-color="#0a4a4e"/>
-    </linearGradient>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Astar Health Service star">
+  <path d="M32 3 L41 23 L32 32 L23 23 Z" fill="#E8312A"/>
+  <path d="M61 32 L41 41 L32 32 L41 23 Z" fill="#F6B500"/>
+  <path d="M32 61 L23 41 L32 32 L41 41 Z" fill="#2FA84F"/>
+  <path d="M3 32 L23 23 L32 32 L23 41 Z" fill="#1C75BC"/>
+  <circle cx="32" cy="32" r="3.4" fill="#173F7C"/>
 </svg>
