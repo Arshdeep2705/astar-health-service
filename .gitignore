@@ -9,3 +9,6 @@ desktop.ini
 
 # Large original source assets (kept locally, not deployed)
 assets/source/
+
+# Stray screenshots dropped into assets
+assets/ChatGPT*
