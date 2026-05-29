@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 64" role="img" aria-label="Registered NDIS Provider">
-  <rect x="0.5" y="0.5" width="229" height="63" rx="12" fill="#ffffff" stroke="#d7e3ef"/>
-  <rect x="10" y="10" width="84" height="44" rx="9" fill="#6A2E9B"/>
-  <text x="52" y="39" text-anchor="middle" font-family="'Plus Jakarta Sans',Arial,sans-serif" font-weight="800" font-size="22" fill="#ffffff" letter-spacing="1">NDIS</text>
-  <text x="106" y="28" font-family="'Plus Jakarta Sans',Arial,sans-serif" font-weight="800" font-size="14" fill="#173F7C">Registered</text>
-  <text x="106" y="46" font-family="'Plus Jakarta Sans',Arial,sans-serif" font-weight="600" font-size="13" fill="#4a5b6b">Provider</text>
-</svg>

@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Astar Health Service star">
-  <path d="M32 3 L41 23 L32 32 L23 23 Z" fill="#E8312A"/>
-  <path d="M61 32 L41 41 L32 32 L41 23 Z" fill="#F6B500"/>
-  <path d="M32 61 L23 41 L32 32 L41 41 Z" fill="#2FA84F"/>
-  <path d="M3 32 L23 23 L32 32 L23 41 Z" fill="#1C75BC"/>
-  <circle cx="32" cy="32" r="3.4" fill="#173F7C"/>
-</svg>

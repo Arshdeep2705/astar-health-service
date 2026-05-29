@@ -6,3 +6,6 @@ desktop.ini
 .vscode/
 .idea/
 .claude/
+
+# Large original source assets (kept locally, not deployed)
+assets/source/

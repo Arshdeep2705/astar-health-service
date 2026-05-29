@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://astarhealthservice.com.au/sitemap.xml
+Sitemap: https://astarhealthservice.au/sitemap.xml

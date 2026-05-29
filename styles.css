@@ -500,6 +500,30 @@ p { color: var(--muted); }
 .cta-split .c-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
 /* ==========================================================================
+   Image fitting overrides — show full photos (no cropping), badge sizing
+   ========================================================================== */
+
+/* Service detail photos: show the whole image at its natural ratio */
+.split-media .shot { aspect-ratio: auto; background: var(--blue-50); }
+.split-media .shot img { height: auto; object-fit: contain; }
+
+/* Service card thumbs: whole image visible on a soft brand tint */
+.service-card .thumb { aspect-ratio: 4 / 3; background: var(--blue-50); }
+.service-card .thumb img { object-fit: contain; }
+
+/* Lighten the hero overlay so the photograph shows through (translucent) */
+.hero-xl::after { background: linear-gradient(102deg, rgba(11,32,64,.86) 0%, rgba(17,59,107,.72) 45%, rgba(20,83,143,.34) 100%); }
+
+/* New NDIS "I love ndis" badge (raster, white background) */
+img[src$="ndis-badge.png"] { width: auto; height: 66px; }
+.trust-badge img[src$="ndis-badge.png"] { height: 70px; }
+.site-footer img[src$="ndis-badge.png"] { background: #fff; padding: 8px 12px; border-radius: 12px; height: 58px; }
+
+/* Registration-group code chip on service blocks */
+.svc-code { display: flex; width: fit-content; align-items: center; gap: 7px; background: var(--blue-600); color: #fff; font-weight: 700; font-size: .78rem; letter-spacing: .03em; padding: 5px 12px; border-radius: var(--r-pill); margin-bottom: 12px; }
+.svc-code::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--yellow); }
+
+/* ==========================================================================
    Responsive
    ========================================================================== */
 @media (max-width: 1024px) {
