@@ -72,6 +72,30 @@
     });
   });
 
+  /* ---- Animated counters ---- */
+  var counters = document.querySelectorAll("[data-count]");
+  if (counters.length && "IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        cio.unobserve(el);
+        var target = parseInt(el.getAttribute("data-count"), 10) || 0;
+        var start = null, dur = 1100;
+        var step = function (ts) {
+          if (start === null) start = ts;
+          var p = Math.min((ts - start) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = String(Math.round(eased * target));
+          if (p < 1) requestAnimationFrame(step);
+          else el.textContent = String(target);
+        };
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(function (c) { cio.observe(c); });
+  }
+
   /* ---- Footer year ---- */
   var yr = document.getElementById("year");
   if (yr) { yr.textContent = String(new Date().getFullYear()); }
