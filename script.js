@@ -3,6 +3,8 @@
 (function () {
   "use strict";
 
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   /* ---- Header shadow on scroll ---- */
   var header = document.querySelector(".site-header");
   if (header) {
@@ -41,16 +43,31 @@
     });
   }
 
-  /* ---- Reveal on scroll ---- */
+  /* ---- Reveal on scroll (staggered within groups) ---- */
   var revealEls = document.querySelectorAll(".reveal");
-  if ("IntersectionObserver" in window && revealEls.length) {
+  if ("IntersectionObserver" in window && revealEls.length && !reduceMotion) {
     var io = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("in");
-            io.unobserve(entry.target);
+          if (!entry.isIntersecting) return;
+          var el = entry.target;
+          io.unobserve(el);
+          // Stagger siblings that arrive in the same batch
+          var delay = 0;
+          if (el.parentElement) {
+            var peers = Array.prototype.filter.call(el.parentElement.children, function (c) {
+              return c.classList.contains("reveal") && !c.classList.contains("in");
+            });
+            delay = Math.min(peers.indexOf(el), 6) * 75;
+            if (delay < 0) delay = 0;
           }
+          el.style.transitionDelay = delay + "ms";
+          el.classList.add("in");
+          // After the entrance finishes, hand transitions back to hover styles
+          window.setTimeout(function () {
+            el.classList.remove("reveal", "in");
+            el.style.transitionDelay = "";
+          }, 750 + delay);
         });
       },
       { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
@@ -58,6 +75,22 @@
     revealEls.forEach(function (el) { io.observe(el); });
   } else {
     revealEls.forEach(function (el) { el.classList.add("in"); });
+  }
+
+  /* ---- Hero parallax (desktop, motion-safe only) ---- */
+  var heroBg = document.querySelector(".hero-xl .bg");
+  if (heroBg && !reduceMotion && window.matchMedia("(min-width: 821px)").matches) {
+    var pTick = false;
+    var parallax = function () {
+      var y = window.scrollY;
+      if (y < window.innerHeight * 1.3) {
+        heroBg.style.transform = "translate3d(0," + (y * 0.22).toFixed(1) + "px,0) scale(1.1)";
+      }
+      pTick = false;
+    };
+    window.addEventListener("scroll", function () {
+      if (!pTick) { pTick = true; window.requestAnimationFrame(parallax); }
+    }, { passive: true });
   }
 
   /* ---- FAQ accordion ---- */
