@@ -3,28 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Page not found | Astar Health Service</title>
-  <meta name="robots" content="noindex" />
+  <title>Astar Health Service | Site Temporarily Unavailable</title>
+  <meta name="description" content="Astar Health Service's website is temporarily unavailable while we carry out maintenance. We'll be back shortly." />
+  <meta name="theme-color" content="#14538F" />
+  <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" href="/favicon.png" type="image/png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #F4F7FB;
+      color: #14213D;
+      text-align: center;
+    }
+    .card {
+      max-width: 560px;
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 48px 40px;
+      box-shadow: 0 12px 32px rgba(20, 33, 61, 0.08);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #14538F;
+      color: #fff;
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+    h1 { font-size: 1.6rem; margin: 0 0 12px; color: #14538F; }
+    p { font-size: 1rem; line-height: 1.6; margin: 0 0 8px; color: #45526B; }
+    .contact { margin-top: 24px; font-size: 0.95rem; }
+    .contact a { color: #14538F; font-weight: 600; text-decoration: none; }
+    .contact a:hover { text-decoration: underline; }
+  </style>
 </head>
 <body>
-  <main id="main" style="min-height:100vh;display:grid;place-items:center;text-align:center;padding:40px 20px;background:linear-gradient(180deg,var(--blue-50),#fff)">
-    <div style="max-width:560px">
-      <a class="brand" href="/index.html" style="justify-content:center;margin-bottom:28px">
-        <img class="logo-mark" src="/assets/logo-star.png" alt="" width="48" height="48" />
-        <span class="logo-text"><span class="logo-name">Astar Health Service</span><span class="logo-sub">Service like stars</span></span>
-      </a>
-      <span class="eyebrow" style="justify-content:center">Error 404</span>
-      <h1 style="margin:12px 0 16px">We can't find that page</h1>
-      <p class="lede">The page you're looking for may have moved or no longer exists. Let's get you back on track.</p>
-      <div class="hero-cta" style="justify-content:center;margin-top:28px">
-        <a class="btn btn-primary btn-lg" href="/index.html">Back to home</a>
-        <a class="btn btn-ghost btn-lg" href="/contact/">Contact us</a>
-      </div>
+  <main class="card">
+    <div class="badge">A</div>
+    <h1>We'll be back shortly</h1>
+    <p>Astar Health Service's website is temporarily offline for maintenance.</p>
+    <p>If you need to reach us in the meantime, please get in touch directly:</p>
+    <div class="contact">
+      <p><a href="tel:+61416761673">0416 761 673</a></p>
+      <p><a href="mailto:info@astarhealthservice.au">info@astarhealthservice.au</a></p>
     </div>
   </main>
 </body>
