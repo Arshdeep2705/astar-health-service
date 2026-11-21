@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Email Signature | Astar Health Service</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#14538F" />
+  <link rel="icon" href="/assets/favicon.png" type="image/png" />
+  <style>
+    :root { --ink:#0B1F3A; --blue:#14538F; --blue5:#1C75BC; --muted:#44546B; --line:#E3EBF4; --tint:#F2F6FC; --gold:#FFC429; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--tint); color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.55; }
+    .bar { height: 4px; background: linear-gradient(90deg,#E8312A,#F6B500 34%,#2FA84F 67%,#1C75BC); }
+    main { max-width: 980px; margin: 0 auto; padding: 36px 16px 64px; }
+    h1 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 0 0 6px; letter-spacing: -.02em; }
+    .lede { color: var(--muted); margin: 0 0 28px; max-width: 62ch; }
+    .grid { display: grid; grid-template-columns: 300px 1fr; gap: 24px; align-items: start; }
+    .card { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 22px; }
+    .card h2 { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); margin: 0 0 16px; }
+    label { display: block; font-weight: 700; font-size: .86rem; margin: 0 0 6px; }
+    .field { margin-bottom: 14px; }
+    input { width: 100%; font: inherit; font-size: .95rem; padding: 10px 12px; border: 1px solid #CBD8E8; border-radius: 10px; color: var(--ink); background: #FAFCFF; }
+    input:focus { outline: 2px solid var(--blue5); outline-offset: 1px; border-color: transparent; }
+    .hint { font-size: .78rem; color: var(--muted); margin-top: 4px; }
+    .preview { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 26px 22px; overflow-x: auto; }
+    .mail-chrome { font-size: .85rem; color: var(--muted); border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 18px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 18px; }
+    button { font: inherit; font-weight: 800; border: 0; cursor: pointer; border-radius: 999px; padding: 13px 24px; }
+    .btn-primary { background: var(--gold); color: var(--ink); box-shadow: 0 8px 20px rgba(255,196,41,.35); }
+    .btn-primary:hover { filter: brightness(1.04); }
+    .btn-ghost { background: transparent; color: var(--blue); border: 2px solid #CBD8E8; }
+    .status { font-weight: 700; color: #1E7A3C; font-size: .9rem; min-height: 1.4em; }
+    .steps { margin-top: 24px; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .tab { background: var(--tint); color: var(--ink); padding: 9px 16px; font-size: .88rem; border: 1px solid var(--line); }
+    .tab[aria-selected="true"] { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .panel ol { margin: 0; padding-left: 20px; } .panel li { margin-bottom: 7px; }
+    .panel[hidden] { display: none; }
+    kbd { font: inherit; font-weight: 700; background: var(--tint); border: 1px solid var(--line); border-radius: 6px; padding: 0 6px; }
+    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="bar"></div>
+  <main>
+    <h1>Astar email signature</h1>
+    <p class="lede">Fill in your details, check the preview, then press <strong>Copy signature</strong> and paste it into your email settings. You only need to do this once per email app. Every Astar team member can use this page to make their own.</p>
+
+    <div class="grid">
+      <section class="card" aria-labelledby="details-h">
+        <h2 id="details-h">Your details</h2>
+        <div class="field"><label for="f-name">Full name</label><input id="f-name" value="Arshdeep Samra" autocomplete="name" /></div>
+        <div class="field"><label for="f-title">Job title</label><input id="f-title" placeholder="e.g. Director" autocomplete="organization-title" /><div class="hint">Leave blank to hide this line.</div></div>
+        <div class="field"><label for="f-phone">Mobile</label><input id="f-phone" value="0478 560 410" inputmode="tel" /></div>
+        <div class="field"><label for="f-email">Email</label><input id="f-email" value="info@astarhealthservice.au" inputmode="email" /></div>
+      </section>
+
+      <section class="card" aria-labelledby="preview-h">
+        <h2 id="preview-h">Preview</h2>
+        <div class="preview">
+          <div class="mail-chrome">Kind regards,</div>
+          <div id="sig"></div>
+        </div>
+        <div class="actions">
+          <button class="btn-primary" id="copy">Copy signature</button>
+          <button class="btn-ghost" id="copy-html">Copy as HTML code</button>
+          <span class="status" id="status" role="status" aria-live="polite"></span>
+        </div>
+      </section>
+    </div>
+
+    <section class="card steps" aria-labelledby="steps-h">
+      <h2 id="steps-h">Add it to your email</h2>
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" aria-selected="true" aria-controls="p-gmail" id="t-gmail">Gmail / Google Workspace</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p-outlook" id="t-outlook">Outlook / Microsoft 365</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p-apple" id="t-apple">Apple Mail (Mac)</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p-iphone" id="t-iphone">iPhone</button>
+      </div>
+      <div class="panel" role="tabpanel" id="p-gmail" aria-labelledby="t-gmail"><ol>
+        <li>Press <strong>Copy signature</strong> above.</li>
+        <li>In Gmail on a computer, click the ⚙️ gear, then <strong>See all settings</strong>.</li>
+        <li>On the <strong>General</strong> tab, scroll to <strong>Signature</strong> and click <strong>Create new</strong>. Name it “Astar”.</li>
+        <li>Click in the signature box and paste (<kbd>Ctrl</kbd>+<kbd>V</kbd>, or <kbd>⌘</kbd>+<kbd>V</kbd> on a Mac).</li>
+        <li>Under <strong>Signature defaults</strong>, choose “Astar” for both <strong>new emails</strong> and <strong>reply/forward</strong>.</li>
+        <li>Scroll to the bottom and click <strong>Save Changes</strong>. Gmail on your phone uses this signature automatically.</li>
+      </ol></div>
+      <div class="panel" role="tabpanel" id="p-outlook" aria-labelledby="t-outlook" hidden><ol>
+        <li>Press <strong>Copy signature</strong> above.</li>
+        <li><strong>Outlook on the web / new Outlook:</strong> ⚙️ Settings → <strong>Account</strong> → <strong>Signatures</strong> → <strong>New signature</strong>.</li>
+        <li><strong>Classic Outlook for Windows:</strong> File → Options → Mail → <strong>Signatures…</strong> → New.</li>
+        <li>Name it “Astar”, paste into the box, and set it as the default for new messages and replies/forwards.</li>
+        <li>Click <strong>Save</strong>.</li>
+      </ol></div>
+      <div class="panel" role="tabpanel" id="p-apple" aria-labelledby="t-apple" hidden><ol>
+        <li>Open this page in <strong>Safari</strong> and press <strong>Copy signature</strong>.</li>
+        <li>In Mail, go to <strong>Mail → Settings → Signatures</strong>, select your Astar account and click <strong>+</strong>.</li>
+        <li><strong>Untick</strong> “Always match my default message font”, then paste into the right-hand box.</li>
+        <li>Choose it in the <strong>Choose Signature</strong> menu for that account.</li>
+      </ol></div>
+      <div class="panel" role="tabpanel" id="p-iphone" aria-labelledby="t-iphone" hidden><ol>
+        <li>If you use the Gmail or Outlook app, set the signature up on a computer first (other tabs) and it syncs to your phone. That's the best-looking option.</li>
+        <li>For the built-in iPhone Mail app: open this page in Safari on the iPhone and tap <strong>Copy signature</strong>.</li>
+        <li>Go to <strong>Settings → Apps → Mail → Signature</strong>, delete “Sent from my iPhone”, then tap and hold and choose <strong>Paste</strong>.</li>
+        <li>iPhone Mail can simplify the layout. If it looks off, use the Gmail or Outlook app instead.</li>
+      </ol></div>
+    </section>
+  </main>
+
+  <script>
+  (function () {
+    var SITE = 'https://astarhealthservice.au';
+    var C = { ink:'#0B1F3A', blue:'#14538F', star:'#1C75BC', muted:'#5B6B82', soft:'#8A99AE', line:'#D5E5F6',
+              red:'#E8312A', yellow:'#F6B500', green:'#2FA84F' };
+    var FONT = "Arial, Helvetica, sans-serif";
+
+    function esc(s) { return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]; }); }
+
+    function contactRow(label, text, href) {
+      return '<tr>' +
+        '<td style="padding:0 10px 3px 0;font-family:' + FONT + ';font-size:12px;font-weight:bold;color:' + C.star + ';vertical-align:top;">' + label + '</td>' +
+        '<td style="padding:0 0 3px 0;font-family:' + FONT + ';font-size:13px;color:' + C.ink + ';vertical-align:top;">' +
+          (href ? '<a href="' + href + '" style="color:' + C.ink + ';text-decoration:none;">' + esc(text) + '</a>' : esc(text)) +
+        '</td></tr>';
+    }
+
+    function build(d) {
+      var tel = '+61' + d.phone.replace(/\D/g, '').replace(/^0/, '');
+      var stripe = [C.red, C.yellow, C.green, C.star].map(function (c) {
+        return '<td width="25%" height="4" bgcolor="' + c + '" style="height:4px;line-height:4px;font-size:0;background:' + c + ';">&nbsp;</td>';
+      }).join('');
+
+      return '' +
+      '<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;max-width:520px;font-family:' + FONT + ';">' +
+        '<tr><td style="padding:0 0 14px 0;">' +
+          '<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;"><tr>' +
+            '<td valign="top" style="padding:2px 18px 0 0;">' +
+              '<a href="' + SITE + '" style="text-decoration:none;"><img src="' + SITE + '/assets/logo-star.png" width="64" height="66" alt="Astar Health Service" style="display:block;border:0;width:64px;height:66px;" /></a>' +
+            '</td>' +
+            '<td valign="top" style="border-left:2px solid ' + C.line + ';padding:0 0 0 18px;">' +
+              '<div style="font-family:' + FONT + ';font-size:19px;font-weight:bold;color:' + C.ink + ';line-height:24px;">' + esc(d.name) + '</div>' +
+              (d.title ? '<div style="font-family:' + FONT + ';font-size:13px;color:' + C.blue + ';line-height:19px;font-weight:bold;">' + esc(d.title) + '</div>' : '') +
+              '<div style="font-family:' + FONT + ';font-size:14px;font-weight:bold;color:' + C.ink + ';line-height:20px;padding-top:6px;">Astar Health Service</div>' +
+              '<div style="font-family:' + FONT + ';font-size:10px;font-weight:bold;letter-spacing:2.5px;line-height:16px;padding-bottom:10px;">' +
+                '<span style="color:' + C.red + ';">SERVICE</span> <span style="color:' + C.yellow + ';">LIKE</span> <span style="color:' + C.green + ';">STARS</span></div>' +
+              '<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;">' +
+                contactRow('M', d.phone, 'tel:' + tel) +
+                contactRow('E', d.email, 'mailto:' + d.email) +
+                contactRow('W', 'astarhealthservice.au', SITE) +
+                contactRow('A', 'Maddingley, VIC 3340', '') +
+              '</table>' +
+            '</td>' +
+          '</tr></table>' +
+        '</td></tr>' +
+        '<tr><td style="padding:0;"><table cellpadding="0" cellspacing="0" border="0" width="100%" role="presentation" style="border-collapse:collapse;"><tr>' + stripe + '</tr></table></td></tr>' +
+        '<tr><td style="padding:12px 0 0 0;">' +
+          '<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;"><tr>' +
+            '<td valign="middle" style="padding:0 12px 0 0;"><img src="' + SITE + '/assets/ndis-logo.png" width="46" height="46" alt="I love NDIS logo" style="display:block;border:0;width:46px;height:46px;border-radius:23px;" /></td>' +
+            '<td valign="middle" style="font-family:' + FONT + ';">' +
+              '<div style="font-size:13px;font-weight:bold;color:' + C.ink + ';line-height:18px;">Registered NDIS Provider</div>' +
+              '<div style="font-size:11px;color:' + C.muted + ';line-height:16px;">Person-centred disability support across Victoria · ABN 58 663 470 675</div>' +
+            '</td>' +
+          '</tr></table>' +
+        '</td></tr>' +
+        '<tr><td style="padding:12px 0 0 0;font-family:' + FONT + ';font-size:10.5px;line-height:15px;color:' + C.soft + ';">' +
+          'Astar Health Service acknowledges the Traditional Custodians of the lands on which we work and live, and pays respect to Elders past and present.' +
+        '</td></tr>' +
+        '<tr><td style="padding:8px 0 0 0;font-family:' + FONT + ';font-size:9.5px;line-height:14px;color:' + C.soft + ';">' +
+          'This email and any attachments are confidential and may contain personal or health information. If you are not the intended recipient, please notify the sender and delete it.' +
+        '</td></tr>' +
+      '</table>';
+    }
+
+    var ids = ['name','title','phone','email'], sigEl = document.getElementById('sig'), status = document.getElementById('status');
+    function data() { var d = {}; ids.forEach(function (k) { d[k] = document.getElementById('f-' + k).value.trim(); }); return d; }
+    function render() { sigEl.innerHTML = build(data()); }
+    ids.forEach(function (k) { document.getElementById('f-' + k).addEventListener('input', render); });
+    render();
+
+    function say(msg) { status.textContent = msg; clearTimeout(say.t); say.t = setTimeout(function () { status.textContent = ''; }, 4000); }
+
+    function copyRich() {
+      var html = build(data()), text = sigEl.innerText;
+      if (navigator.clipboard && window.ClipboardItem) {
+        return navigator.clipboard.write([new ClipboardItem({
+          'text/html': new Blob([html], { type: 'text/html' }),
+          'text/plain': new Blob([text], { type: 'text/plain' }) })]).then(function () { return true; }, fallback);
+      }
+      return Promise.resolve(fallback());
+    }
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(sigEl);
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      var ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+      sel.removeAllRanges(); return ok;
+    }
+    document.getElementById('copy').addEventListener('click', function () {
+      copyRich().then(function (ok) { say(ok === false ? 'Copy blocked. Select the preview and copy it manually.' : '✓ Copied. Now paste it into your email settings.'); });
+    });
+    document.getElementById('copy-html').addEventListener('click', function () {
+      var html = build(data());
+      (navigator.clipboard ? navigator.clipboard.writeText(html) : Promise.reject()).then(
+        function () { say('✓ HTML code copied.'); }, function () { say('Copy blocked by the browser.'); });
+    });
+
+    var tabs = document.querySelectorAll('.tab');
+    tabs.forEach(function (t) { t.addEventListener('click', function () {
+      tabs.forEach(function (o) { o.setAttribute('aria-selected', o === t ? 'true' : 'false');
+        document.getElementById(o.getAttribute('aria-controls')).hidden = (o !== t); });
+    }); });
+  })();
+  </script>
+</body>
+</html>
