@@ -80,7 +80,7 @@ GitHub Pages rebuilds automatically within ~1 minute.
 
 - [ ] **Phone number** — replace placeholder `(03) 0000 0000` / `+61300000000` everywhere (header, footer, contact, CTAs, and the JSON-LD `telephone` in `index.html`). Search the repo for `0000 0000` and `61300000000`.
 - [ ] **Email** — confirm `info@astarhealthservice.com.au` is a real, monitored inbox (set up email forwarding in GoDaddy if needed).
-- [ ] **Contact form backend** — the form currently shows a simulated success message only; it does **not** send anything. Wire it to a handler (e.g. Formspree, Web3Forms, or Netlify Forms) — see `script.js` form-submit block.
+- [x] **Contact form backend** — wired to Web3Forms (account: info@astarhealthservice.au, form "Astar website enquiries"). Submissions are emailed to info@. The access key is in `contact/index.html`; the send logic is the `script.js` form-submit block.
 - [ ] **NDIS registration / provider number** — add it to the contact page and footer (legally recommended for a registered provider claim).
 - [ ] **Testimonial** — the home-page testimonial is illustrative. Replace with a real, consented quote or remove the section.
 - [ ] **Social links** — footer Facebook/Instagram/LinkedIn icons currently point to `#`. Update to real profiles or remove.

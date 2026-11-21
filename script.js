@@ -204,19 +204,41 @@
         return;
       }
 
-      // Simulated success (no backend wired yet — see DEPLOYMENT.md)
+      // Send to Web3Forms, which emails the enquiry to info@astarhealthservice.au
       var submitBtn = form.querySelector("[type='submit']");
+      var resetBtn = function () {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = submitBtn.getAttribute("data-label") || "Send enquiry"; }
+      };
       if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = "Sending…"; }
 
-      window.setTimeout(function () {
-        if (status) {
-          status.innerHTML = "Thank you — your enquiry has been received. Our team will be in touch within one business day.";
-          status.className = "form-status success show";
-          status.scrollIntoView({ behavior: "smooth", block: "center" });
-        }
-        form.reset();
-        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = submitBtn.getAttribute("data-label") || "Send enquiry"; }
-      }, 900);
+      var data = {};
+      new FormData(form).forEach(function (value, key) { data[key] = value; });
+      var who = ((data.firstName || "") + " " + (data.lastName || "")).trim();
+      data.name = who;
+      data.subject = "New website enquiry" + (data.enquiryType ? " (" + data.enquiryType + ")" : "") + (who ? " from " + who : "");
+
+      fetch(form.getAttribute("action"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(data)
+      })
+        .then(function (res) { return res.json().then(function (json) { return { ok: res.ok && json.success, json: json }; }); })
+        .then(function (r) {
+          if (!r.ok) throw new Error((r.json && r.json.message) || "Send failed");
+          if (status) {
+            status.textContent = "Thank you — your enquiry has been received. Our team will be in touch within one business day.";
+            status.className = "form-status success show";
+            status.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+          form.reset();
+        })
+        .catch(function () {
+          if (status) {
+            status.innerHTML = "Sorry, your enquiry couldn't be sent just now. Please call us on <a href=\"tel:+61478560410\">0478 560 410</a> or email <a href=\"mailto:info@astarhealthservice.au\">info@astarhealthservice.au</a>.";
+            status.className = "form-status error show";
+          }
+        })
+        .then(resetBtn);
     });
   }
 })();
