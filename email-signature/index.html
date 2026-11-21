@@ -17,6 +17,7 @@
     h1 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 0 0 6px; letter-spacing: -.02em; }
     .lede { color: var(--muted); margin: 0 0 28px; max-width: 62ch; }
     .grid { display: grid; grid-template-columns: 300px 1fr; gap: 24px; align-items: start; }
+    .grid > * { min-width: 0; }
     .card { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 22px; }
     .card h2 { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); margin: 0 0 16px; }
     label { display: block; font-weight: 700; font-size: .86rem; margin: 0 0 6px; }
@@ -51,8 +52,8 @@
     <div class="grid">
       <section class="card" aria-labelledby="details-h">
         <h2 id="details-h">Your details</h2>
-        <div class="field"><label for="f-name">Full name</label><input id="f-name" value="Arshdeep Samra" autocomplete="name" /></div>
-        <div class="field"><label for="f-title">Job title</label><input id="f-title" placeholder="e.g. Director" autocomplete="organization-title" /><div class="hint">Leave blank to hide this line.</div></div>
+        <div class="field"><label for="f-name">Full name</label><input id="f-name" value="Arshdeep Singh" autocomplete="name" /></div>
+        <div class="field"><label for="f-title">Job title</label><input id="f-title" value="Team Leader" placeholder="e.g. Director" autocomplete="organization-title" /><div class="hint">Leave blank to hide this line.</div></div>
         <div class="field"><label for="f-phone">Mobile</label><input id="f-phone" value="0478 560 410" inputmode="tel" /></div>
         <div class="field"><label for="f-email">Email</label><input id="f-email" value="info@astarhealthservice.au" inputmode="email" /></div>
       </section>
@@ -165,8 +166,14 @@
             '</td>' +
           '</tr></table>' +
         '</td></tr>' +
-        '<tr><td style="padding:12px 0 0 0;font-family:' + FONT + ';font-size:10.5px;line-height:15px;color:' + C.soft + ';">' +
-          'Astar Health Service acknowledges the Traditional Custodians of the lands on which we work and live, and pays respect to Elders past and present.' +
+        '<tr><td style="padding:12px 0 0 0;">' +
+          '<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;"><tr>' +
+            '<td valign="middle" style="padding:0 4px 0 0;"><img src="' + SITE + '/assets/flags/aboriginal.png" width="30" height="18" alt="Australian Aboriginal flag" style="display:block;border:0;width:30px;height:18px;" /></td>' +
+            '<td valign="middle" style="padding:0;"><img src="' + SITE + '/assets/flags/torres-strait-islander.png" width="36" height="18" alt="Torres Strait Islander flag" style="display:block;border:0;width:36px;height:18px;" /></td>' +
+            '<td valign="middle" style="padding:0 0 0 10px;font-family:' + FONT + ';font-size:10.5px;line-height:15px;color:' + C.soft + ';">' +
+              'Astar Health Service acknowledges the Traditional Custodians of the lands on which we work and live, and pays respect to Elders past and present.' +
+            '</td>' +
+          '</tr></table>' +
         '</td></tr>' +
         '<tr><td style="padding:8px 0 0 0;font-family:' + FONT + ';font-size:9.5px;line-height:14px;color:' + C.soft + ';">' +
           'This email and any attachments are confidential and may contain personal or health information. If you are not the intended recipient, please notify the sender and delete it.' +

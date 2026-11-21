@@ -656,8 +656,13 @@ p { color: var(--muted); }
 .footer-contact-item svg { width: 18px; height: 18px; color: var(--gold); flex: none; margin-top: 3px; }
 .footer-contact-item a { color: inherit; }
 .footer-contact-item a:hover { color: #fff; }
-.acknowledgement { border-top: 1px solid rgba(255,255,255,.1); padding-block: 24px; color: #7E9BC2; font-size: .89rem; line-height: 1.65; }
+.acknowledgement { border-top: 1px solid rgba(255,255,255,.1); padding-block: 24px; color: #7E9BC2; font-size: .89rem; line-height: 1.65;
+  display: flex; align-items: center; gap: 20px; }
 .acknowledgement strong { color: #D7E4F4; }
+.acknowledgement p { margin: 0; color: inherit; font-size: inherit; line-height: inherit; }
+.ack-flags { display: flex; gap: 8px; flex: none; }
+.ack-flags img { display: block; height: 20px; width: auto; max-width: none; border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.16), 0 2px 6px rgba(0,0,0,.28); }
 .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-block: 22px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; color: #6F8DB5; font-size: .87rem; }
 .footer-bottom a { color: #8FACD0; } .footer-bottom a:hover { color: #fff; }
 .footer-bottom .legal { display: flex; gap: 18px; flex-wrap: wrap; }
@@ -738,6 +743,7 @@ img[src$="ndis-badge.png"] { width: auto; height: 66px; }
 @media (max-width: 600px) {
   .logo-name { white-space: normal; font-size: 1.02rem; line-height: 1.12; }
   .brand .logo-mark { width: 40px; height: 40px; }
+  .acknowledgement { flex-direction: column; align-items: flex-start; gap: 12px; }
 }
 
 @media (max-width: 560px) {
