@@ -133,6 +133,11 @@
         '</td></tr>';
     }
 
+    // One small flag (PNG at 3x, shown 20px tall in its true proportions) with a hairline edge
+    function flag(file, w, alt) {
+      return '<td valign="middle" style="padding:0 7px 0 0;"><img src="' + SITE + '/assets/sig/flag-' + file + '.png" width="' + w + '" height="20" alt="' + alt + '" style="display:block;border:1px solid #E3EBF4;width:' + w + 'px;height:20px;" /></td>';
+    }
+
     // Email-safe pill button (rounded where supported, square in classic Outlook).
     function button(label, href) {
       return '<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:separate;"><tr>' +
@@ -155,11 +160,11 @@
       '<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;max-width:540px;font-family:' + FONT + ';">' +
         '<tr><td style="padding:0 0 18px 0;">' +
           '<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;"><tr>' +
-            '<td valign="top" style="padding:0 18px 0 0;width:72px;">' +
-              '<a href="' + SITE + '" style="text-decoration:none;"><img src="' + SITE + '/assets/sig/star.gif" width="72" height="72" alt="Astar Health Service" style="display:block;border:0;width:72px;height:72px;" /></a>' +
+            '<td valign="top" style="padding:0 20px 0 0;width:84px;">' +
+              '<a href="' + SITE + '" style="text-decoration:none;"><img src="' + SITE + '/assets/sig/star.gif" width="84" height="84" alt="Astar Health Service" style="display:block;border:0;width:84px;height:84px;" /></a>' +
             '</td>' +
             '<td valign="top" style="padding:0;">' +
-              '<div style="font-family:' + FONT + ';font-size:22px;font-weight:bold;color:' + C.ink + ';line-height:27px;letter-spacing:-.2px;">' + esc(d.name) + '</div>' +
+              '<div style="font-family:' + FONT + ';font-size:24px;font-weight:bold;color:' + C.ink + ';line-height:29px;letter-spacing:-.3px;">' + esc(d.name) + '</div>' +
               (d.title ? '<div style="font-family:' + FONT + ';font-size:13px;color:' + C.blue + ';line-height:19px;font-weight:bold;padding-top:1px;">' + esc(d.title) + '</div>' : '') +
               '<div style="font-family:' + FONT + ';font-size:14px;font-weight:bold;color:' + C.ink + ';line-height:20px;padding-top:9px;">Astar Health Service</div>' +
               '<div style="font-family:' + FONT + ';font-size:10px;font-weight:bold;letter-spacing:2.5px;line-height:16px;padding-bottom:12px;">' +
@@ -175,25 +180,31 @@
           '</tr></table>' +
         '</td></tr>' +
         '<tr><td style="padding:0;"><table cellpadding="0" cellspacing="0" border="0" width="100%" role="presentation" style="border-collapse:collapse;"><tr>' + stripe + '</tr></table></td></tr>' +
-        '<tr><td style="padding:12px 0 0 0;">' +
+        // Trust strip: crisp official I love NDIS logo, shown large, with its registration line
+        '<tr><td style="padding:16px 0 0 0;">' +
           '<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;"><tr>' +
-            '<td valign="middle" style="padding:0 12px 0 0;"><img src="' + SITE + '/assets/ndis-logo.png" width="46" height="46" alt="I love NDIS logo" style="display:block;border:0;width:46px;height:46px;border-radius:23px;" /></td>' +
+            '<td valign="middle" style="padding:0 14px 0 0;width:60px;"><img src="' + SITE + '/assets/sig/ndis.png" width="60" height="60" alt="I love NDIS – Registered NDIS Provider" style="display:block;border:0;width:60px;height:60px;" /></td>' +
             '<td valign="middle" style="font-family:' + FONT + ';">' +
-              '<div style="font-size:13px;font-weight:bold;color:' + C.ink + ';line-height:18px;">Registered NDIS Provider</div>' +
-              '<div style="font-size:11px;color:' + C.muted + ';line-height:16px;">Person-centred disability support across Victoria · ABN 58 663 470 675</div>' +
+              '<div style="font-size:15px;font-weight:bold;color:' + C.ink + ';line-height:20px;">Registered NDIS Provider</div>' +
+              '<div style="font-size:11.5px;color:' + C.muted + ';line-height:17px;">Registered with the NDIS Quality and Safeguards Commission</div>' +
+              '<div style="font-size:11.5px;color:' + C.muted + ';line-height:17px;">Person-centred disability support across Victoria · ABN 58 663 470 675</div>' +
             '</td>' +
           '</tr></table>' +
         '</td></tr>' +
-        '<tr><td style="padding:12px 0 0 0;">' +
+        // Flags row, then the Acknowledgement of Country full width beneath it
+        '<tr><td style="padding:16px 0 0 0;">' +
           '<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;"><tr>' +
-            '<td valign="middle" style="padding:0 4px 0 0;"><img src="' + SITE + '/assets/flags/aboriginal.png" width="30" height="18" alt="Australian Aboriginal flag" style="display:block;border:0;width:30px;height:18px;" /></td>' +
-            '<td valign="middle" style="padding:0;"><img src="' + SITE + '/assets/flags/torres-strait-islander.png" width="36" height="18" alt="Torres Strait Islander flag" style="display:block;border:0;width:36px;height:18px;" /></td>' +
-            '<td valign="middle" style="padding:0 0 0 10px;font-family:' + FONT + ';font-size:10.5px;line-height:15px;color:' + C.soft + ';">' +
-              'Astar Health Service acknowledges the Traditional Custodians of the lands on which we work and live, and pays respect to Elders past and present.' +
-            '</td>' +
+            flag('aboriginal', 33, 'Australian Aboriginal flag') +
+            flag('torres-strait-islander', 40, 'Torres Strait Islander flag') +
+            flag('australia', 40, 'Australian flag') +
+            flag('progress-pride', 31, 'Progress Pride flag') +
+            flag('nonbinary', 30, 'Non-binary flag') +
           '</tr></table>' +
         '</td></tr>' +
-        '<tr><td style="padding:8px 0 0 0;font-family:' + FONT + ';font-size:9.5px;line-height:14px;color:' + C.soft + ';">' +
+        '<tr><td style="padding:10px 0 0 0;font-family:' + FONT + ';font-size:11px;line-height:16px;color:' + C.muted + ';">' +
+          'Astar Health Service acknowledges the Traditional Custodians of the lands on which we work and live, and pays respect to Elders past and present. We welcome people of all abilities, cultures, genders and backgrounds.' +
+        '</td></tr>' +
+        '<tr><td style="padding:10px 0 0 0;font-family:' + FONT + ';font-size:9.5px;line-height:14px;color:' + C.soft + ';">' +
           'This email and any attachments are confidential and may contain personal or health information. If you are not the intended recipient, please notify the sender and delete it.' +
         '</td></tr>' +
       '</table>' +
